@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <title>Document</title>
+
+  <style>
+    #app div {
+      height: 200px;
+      width: 200px;      
+    }
+
+    .background-red {
+      background-color: tomato;
+    }
+
+    .background-blue {
+      background-color: rgb(71, 157, 255);
+    }
+
+    button {
+      cursor: pointer;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    {{ teste }}
+
+    <div :class='isActieve ? "background-blue" : "background-red"'></div>
+
+    <button @click="toggle">Toggle Color</button>
+  </div>
+
+  <script>
+
+    Vue.createApp({
+      data() {
+        return {
+          teste: 'TESTE',
+          isActieve: false,
+        }
+      },
+
+      methods: {
+        toggle() {
+          this.isActieve = !this.isActieve
+        }
+      }
+
+    }).mount('#app')
+
+  </script>
+</body>
+</html>

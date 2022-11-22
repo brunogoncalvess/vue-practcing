@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+
+    <section v-show="notCompletedItems">
+      <h2>In Progress</h2>
+      <ul>
+        <li 
+          v-for="item in listItems.filter(i => !(i.done))" 
+          :key="item.id"
+        >
+          <label>
+            {{ item.task }}
+            <input type="checkbox"
+              v-model="item.done"
+            >
+          </label>
+        </li>
+    </section>
+
+    <section v-show="completedItems">
+      <h2>Complete</h2>
+      <ul>
+        <li v-for="item in listItems.filter(i => i.done)" 
+          :key="item.id"
+        >
+          <label>
+            {{ item.task }}
+            <input type="checkbox" 
+              v-model="item.done"
+            >
+          </label>
+        </li>
+      </ul>
+    </section>
+
+    <!-- <pre>{{ listItems }}</pre> -->
+  </div>
+
+  <script>
+    let app = {
+      data() {
+        return {
+          listItems: [
+            { task: 'Study Vue.js', done: false, id: 1 },
+            { task: 'Fix the shower', done: false, id: 2 },
+            { task: 'Get a hair cut', done: false, id: 3 },
+          ]
+        }
+      },
+
+      computed: {
+        completedItems() {
+          return this.listItems.filter(i => i.done).length
+        },
+        notCompletedItems() {
+          return this.listItems.filter(i => !i.done).length
+        }
+      }
+    }
+
+    
+    Vue.createApp(app).mount('#app')
+
+  </script>
+</body>
+</html>

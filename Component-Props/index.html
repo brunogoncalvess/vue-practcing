@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>Document</title>
+
+    <style>
+      .background-blue {
+        background-color: rgb(71, 129, 255);
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        cursor: pointer;
+      }
+
+      .background-red {
+        background-color: tomato;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        cursor: pointer;
+      }
+
+      .disabled-button {
+        position: relative;
+        background-color: rgb(190, 190, 190);
+        color: black;
+        border: none;
+        padding: 5px 10px;
+        cursor: not-allowed;
+        color: transparent;
+      }
+
+      @keyframes spinner {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      .disabled-button:before {
+        content: "";
+        box-sizing: border-box;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 20px;
+        height: 20px;
+        margin-top: -10px;
+        margin-left: -10px;
+        border-radius: 50%;
+        border-top: 2px solid #07d;
+        border-right: 2px solid transparent;
+        animation: spinner 0.6s linear infinite;        
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <app-button colorscheme="primary" :processing="true">Submit</app-button>
+    </div>
+
+    <script type="module">
+      import AppButton from "./components/AppButton.js";
+
+      let App = {
+        components: {
+          AppButton,
+        },
+      };
+
+      Vue.createApp(App).mount("#app");
+    </script>
+  </body>
+</html>
